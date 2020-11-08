@@ -1,16 +1,11 @@
 import {Command, flags} from '@oclif/command'
-// import { exec } from 'child_process'
-const openEditor = require('open-editor')
-const os = require('os')
-const path = require('path')
-
-const workspace_dir='.workstation-config'
+import editor from '../../editor'
 
 export default class Edit extends Command {
   static description = 'Open workspace configs in your favorite editor'
 
   static examples = [
-    `$ wk config edit`,
+    '$ wk config edit',
   ]
 
   static flags = {
@@ -24,14 +19,12 @@ export default class Edit extends Command {
   // static args = [{name: 'file'}]
 
   async run() {
-    const {args, flags} = this.parse(Edit)
+    // const {args, flags} = this.parse(Edit)
 
     // const name = flags.name ?? 'world'
-    this.log('edit wip')
+    // this.log('edit wip')
+    editor.openEditor()
     // exec(`code -n "${workspace_dir}"`)
-    openEditor([
-      path.join(os.homedir(), workspace_dir)
-    ], {editor: 'vscode'});
     // if (args.file) {
     //   this.log(`you input --force and --file: ${args.file}`)
     // }
