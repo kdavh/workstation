@@ -1,7 +1,7 @@
 import {Command, flags} from '@oclif/command'
-import * as Git from 'nodegit'
 import {packageOptions} from "../../package"
-import {execFile} from 'child_process'
+import {execSync} from 'child_process'
+import {cwd} from 'process'
 
 export default class Install extends Command {
   static description = 'Install a package.'
@@ -12,6 +12,7 @@ export default class Install extends Command {
 
   static flags = {
     help: flags.help({char: 'h'}),
+    packagesDir: flags.string(),
   }
 
   static args = [
@@ -25,15 +26,14 @@ export default class Install extends Command {
   async run() {
     const {args, flags} = this.parse(Install)
 
-    execFile(`src/packages/${args.package}/index.sh`, [], {cwd: `src/packages/${args.package}`}, (err, stdout, stderr) => {
-      if (err) {
-        //some err occurred
-        console.error(err)
-      } else {
-        // the *entire* stdout and stderr (buffered)
-        console.log(`stdout: ${stdout}`);
-        console.log(`stderr: ${stderr}`);
-      }
-    })
+    let packagesDir = flags.packagesDir || cwd() + '/src/packages/'
+    // let packageDir = packagesDir + '/' + args.package
+
+    try {
+      let output = execSync('./install.sh ' + args.package, {cwd: packagesDir});
+      console.log(output.toString())
+    } catch (err) {
+      console.error(err.output.toString())
+    }
   }
 }
