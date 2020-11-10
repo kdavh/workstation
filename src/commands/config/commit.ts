@@ -1,5 +1,5 @@
 import {Command, flags} from '@oclif/command'
-import * as Git from 'nodegit'
+// import * as Git from 'nodegit'
 
 export default class ConfigCommit extends Command {
   static description = 'Updates package_definitions, manifests, and workstation-setup repo'
@@ -14,6 +14,7 @@ export default class ConfigCommit extends Command {
 
   // https://github.com/nodegit/nodegit
   async run() {
+    this.log('To be implemented')
     // Git.Repository.open(...)
   }
 }

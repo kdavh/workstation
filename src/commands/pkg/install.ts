@@ -1,5 +1,5 @@
 import {Command, flags} from '@oclif/command'
-import {packageOptions} from "../../package"
+import {packageOptions} from '../../package'
 import {execSync} from 'child_process'
 import {cwd} from 'process'
 
@@ -19,21 +19,22 @@ export default class Install extends Command {
     {
       name: 'package',
       options: packageOptions,
-    }
+    },
   ]
 
   // https://github.com/nodegit/nodegit
   async run() {
     const {args, flags} = this.parse(Install)
 
-    let packagesDir = flags.packagesDir || cwd() + '/src/packages/'
+    const packagesDir = flags.packagesDir || cwd() + '/src/packages/'
     // let packageDir = packagesDir + '/' + args.package
 
     try {
-      let output = execSync('./install.sh ' + args.package, {cwd: packagesDir});
-      console.log(output.toString())
-    } catch (err) {
-      console.error(err.output.toString())
+      const output = execSync('./install.sh ' + args.package, {cwd: packagesDir})
+      // require('../../packages/' + args.package)
+      this.log(output.toString())
+    } catch (error) {
+      this.error(error.output.toString())
     }
   }
 }

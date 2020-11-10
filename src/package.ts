@@ -1,5 +1,7 @@
 export enum Package {
-    Docker = "docker",
+    Docker = 'docker',
+    Shell = 'shell',
+    Zsh = 'zsh',
 }
 
 export const packageOptions = Object.values(Package)

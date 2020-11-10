@@ -9,6 +9,5 @@ describe('config:edit', () => {
   .command(['config:edit'])
   .it('runs config:edit', () => {
     expect(openEditorStub.calledOnce).to.be.true
-    // expect(ctx.stdout).to.contain('edit wip')
   })
 })
