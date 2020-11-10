@@ -1,5 +1,5 @@
 import {Command, flags} from '@oclif/command'
-import {packageOptions} from '../../package'
+import {packageOptions} from '../../pkg'
 import {execSync} from 'child_process'
 import {cwd} from 'process'
 
@@ -12,6 +12,7 @@ export default class Install extends Command {
 
   static flags = {
     help: flags.help({char: 'h'}),
+    // for testing
     packagesDir: flags.string(),
   }
 
@@ -26,12 +27,11 @@ export default class Install extends Command {
   async run() {
     const {args, flags} = this.parse(Install)
 
-    const packagesDir = flags.packagesDir || cwd() + '/src/packages/'
-    // let packageDir = packagesDir + '/' + args.package
+    const packageScriptsDir = cwd() + '/src/pkg'
+    const packagesDir = flags.packagesDir || packageScriptsDir
 
     try {
-      const output = execSync('./install.sh ' + args.package, {cwd: packagesDir})
-      // require('../../packages/' + args.package)
+      const output = execSync(`./install.sh ${packagesDir} ${args.package}`, {cwd: packageScriptsDir})
       this.log(output.toString())
     } catch (error) {
       this.error(error.output.toString())

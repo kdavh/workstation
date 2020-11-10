@@ -5,8 +5,28 @@ describe('pkg:install', () => {
   test
   .stdout()
   .command(['pkg:install', '--packagesDir', cwd() + '/test/packages', 'shell'])
-  .it('runs pkg:install', ctx => {
-    console.log(ctx.stdout)
+  .it('runs pkg:install shell', ctx => {
     expect(ctx.stdout).to.contain('test shell install check')
+    expect(ctx.stdout).to.contain('test shell installed')
+  })
+
+  test
+  .stdout()
+  .command(['pkg:install', '--packagesDir', cwd() + '/test/packages', 'docker'])
+  .it('runs pkg:install docker, depends on shell', ctx => {
+    expect(ctx.stdout).to.contain('test shell install check')
+    expect(ctx.stdout).to.contain('test shell installed')
+    expect(ctx.stdout).to.contain('test docker install check')
+    expect(ctx.stdout).to.contain('test docker installed')
+  })
+
+  test
+  .stdout()
+  .command(['pkg:install', '--packagesDir', cwd() + '/test/packages', 'zsh'])
+  .it('runs pkg:install zsh, already installed', ctx => {
+    expect(ctx.stdout).to.contain('test shell install check')
+    expect(ctx.stdout).to.contain('test shell installed')
+    expect(ctx.stdout).to.contain('test zsh install check')
+    expect(ctx.stdout).to.not.contain('test zsh installed')
   })
 })

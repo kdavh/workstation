@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-dependencies=('__test__1')
+dependencies=('shell')
 
 function checkInstalled() {
     echo 'test zsh install check'

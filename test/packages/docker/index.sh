@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-dependencies=()
+dependencies=('shell')
 
 function checkInstalled() {
     echo 'test docker install check'
