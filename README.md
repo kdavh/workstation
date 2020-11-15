@@ -1,7 +1,24 @@
 wk
 ==
 
-workspace setup tool, mac, linux, etc
+Workspace setup tool, mac, linux, etc
+
+# Intended Use
+
+```
+# install npm somehow
+brew install npm
+
+# make `wk` binary available on your system
+git clone https://github.com/kdavh/workstation
+cd workstation
+npm link
+
+# download some dotfiles to work with
+git clone git@github.com:kdavh/dotfiles.git ~/.dotfiles
+
+# now use `wk` with them
+```
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/wk.svg)](https://npmjs.org/package/wk)
@@ -11,6 +28,7 @@ workspace setup tool, mac, linux, etc
 <!-- toc -->
 * [Usage](#usage)
 * [Commands](#commands)
+* [Develop](#develop)
 <!-- tocstop -->
 # Usage
 <!-- usage -->
@@ -28,10 +46,35 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`wk autocomplete [SHELL]`](#wk-autocomplete-shell)
 * [`wk config:commit`](#wk-configcommit)
 * [`wk config:edit`](#wk-configedit)
 * [`wk help [COMMAND]`](#wk-help-command)
 * [`wk pkg:install [PACKAGE]`](#wk-pkginstall-package)
+* [`wk pkg:search`](#wk-pkgsearch)
+
+## `wk autocomplete [SHELL]`
+
+display autocomplete installation instructions
+
+```
+USAGE
+  $ wk autocomplete [SHELL]
+
+ARGUMENTS
+  SHELL  shell type
+
+OPTIONS
+  -r, --refresh-cache  Refresh cache (ignores displaying instructions)
+
+EXAMPLES
+  $ wk autocomplete
+  $ wk autocomplete bash
+  $ wk autocomplete zsh
+  $ wk autocomplete --refresh-cache
+```
+
+_See code: [@oclif/plugin-autocomplete](https://github.com/oclif/plugin-autocomplete/blob/v0.2.0/src/commands/autocomplete/index.ts)_
 
 ## `wk config:commit`
 
@@ -93,13 +136,32 @@ USAGE
   $ wk pkg:install [PACKAGE]
 
 OPTIONS
-  -h, --help  show CLI help
+  -h, --help                 show CLI help
+  --packagesDir=packagesDir
 
 EXAMPLE
   $ wk install docker
 ```
 
 _See code: [src/commands/pkg/install.ts](https://github.com/kdavh/wk/blob/v0.0.1/src/commands/pkg/install.ts)_
+
+## `wk pkg:search`
+
+Search for a package. Pipe to grep if filtering needed
+
+```
+USAGE
+  $ wk pkg:search
+
+OPTIONS
+  -h, --help                 show CLI help
+  --packagesDir=packagesDir
+
+EXAMPLE
+  $ wk pkg:search docker
+```
+
+_See code: [src/commands/pkg/search.ts](https://github.com/kdavh/wk/blob/v0.0.1/src/commands/pkg/search.ts)_
 <!-- commandsstop -->
 
 # Develop
