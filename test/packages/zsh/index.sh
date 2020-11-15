@@ -2,7 +2,7 @@
 
 dependencies=('shell')
 
-function checkInstalled() {
+function check_installed() {
     echo 'test zsh install check'
     exit_installed
 }

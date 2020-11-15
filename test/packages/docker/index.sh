@@ -2,7 +2,7 @@
 
 dependencies=('shell')
 
-function checkInstalled() {
+function check_installed() {
     echo 'test docker install check'
 }
 

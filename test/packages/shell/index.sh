@@ -2,7 +2,7 @@
 
 dependencies=()
 
-function checkInstalled() {
+function check_installed() {
     echo 'test shell install check'
 }
 

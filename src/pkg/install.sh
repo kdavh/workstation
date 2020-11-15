@@ -41,5 +41,5 @@ for d in $dependencies; do
     popd
 done
 
-checkInstalled
+check_installed
 install
