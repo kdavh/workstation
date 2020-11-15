@@ -4,7 +4,7 @@ dependencies=('shell')
 
 function checkInstalled() {
     echo 'test zsh install check'
-    exitInstalled
+    exit_installed
 }
 
 function install() {
