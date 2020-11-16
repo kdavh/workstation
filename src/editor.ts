@@ -1,9 +1,9 @@
 const baseOpenEditor = require('open-editor')
-import {workspaceRootDir} from './definitions'
+import {srcRootDir} from './definitions'
 
 function openEditor() {
   baseOpenEditor([
-    workspaceRootDir,
+    srcRootDir,
   ], {editor: 'vscode'})
 }
 

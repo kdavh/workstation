@@ -1,7 +1,8 @@
 import {execSync} from 'child_process'
-import {cwd} from 'process'
 
-const PACKAGE_SCRIPTS_DIR = cwd() + '/src/pkg'
+import {srcRootDir} from '../definitions'
+
+const PACKAGE_SCRIPTS_DIR = srcRootDir + '/pkg'
 
 export function install(packageName: string, packagesDir: string): string {
   try {

@@ -1,10 +1,11 @@
 import {expect, test} from '@oclif/test'
-import {cwd} from 'process'
+
+import {testRootDir} from '../../../src/definitions'
 
 describe('pkg:install', () => {
   test
   .stdout()
-  .command(['pkg:install', '--packagesDir', cwd() + '/test/pkg', 'shell'])
+  .command(['pkg:install', '--packagesDir', testRootDir + '/pkg', 'shell'])
   .it('runs pkg:install shell', ctx => {
     expect(ctx.stdout).to.contain('test shell install check')
     expect(ctx.stdout).to.contain('test shell installed')
@@ -12,7 +13,7 @@ describe('pkg:install', () => {
 
   test
   .stdout()
-  .command(['pkg:install', '--packagesDir', cwd() + '/test/pkg', 'docker'])
+  .command(['pkg:install', '--packagesDir', testRootDir + '/pkg', 'docker'])
   .it('runs pkg:install docker, depends on shell', ctx => {
     expect(ctx.stdout).to.contain('test shell install check')
     expect(ctx.stdout).to.contain('test shell installed')
@@ -22,7 +23,7 @@ describe('pkg:install', () => {
 
   test
   .stdout()
-  .command(['pkg:install', '--packagesDir', cwd() + '/test/pkg', 'zsh'])
+  .command(['pkg:install', '--packagesDir', testRootDir + '/pkg', 'zsh'])
   .it('runs pkg:install zsh, already installed', ctx => {
     expect(ctx.stdout).to.contain('test shell install check')
     expect(ctx.stdout).to.contain('test shell installed')
