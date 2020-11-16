@@ -4,11 +4,11 @@ import {homedir} from 'os'
 
 const DEFAULT_PACKAGES_DIR = `${homedir()}/.dotfiles/pkg`
 
-export default class Search extends Command {
-  static description = 'Search for a package. Pipe to grep if filtering needed'
+export default class List extends Command {
+  static description = 'List packages. Pipe to grep if filtering needed'
 
   static examples = [
-    '$ wk pkg:search docker',
+    '$ wk pkg:list',
   ]
 
   static flags = {
@@ -18,7 +18,7 @@ export default class Search extends Command {
   }
 
   async run() {
-    const {flags} = this.parse(Search)
+    const {flags} = this.parse(List)
 
     const packagesDir = flags.packagesDir || DEFAULT_PACKAGES_DIR
 

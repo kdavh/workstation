@@ -1,11 +1,11 @@
 import {expect, test} from '@oclif/test'
 import {cwd} from 'process'
 
-describe('pkg:search', () => {
+describe('pkg:list', () => {
   test
   .stdout()
-  .command(['pkg:search', '--packagesDir', cwd() + '/test/packages'])
-  .it('runs pkg:search finds all', ctx => {
+  .command(['pkg:list', '--packagesDir', cwd() + '/test/pkg'])
+  .it('runs pkg:list finds all', ctx => {
     expect(ctx.stdout).to.contain('docker\nshell\nzsh')
   })
 })

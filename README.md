@@ -17,7 +17,7 @@ npm link
 # download some dotfiles to work with
 git clone git@github.com:kdavh/dotfiles.git ~/.dotfiles
 
-# now use `wk` with them
+# now use `wk`
 ```
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)

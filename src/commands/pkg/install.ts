@@ -1,16 +1,15 @@
 import {Command, flags} from '@oclif/command'
-import {execSync} from 'child_process'
 import {homedir} from 'os'
-import {cwd} from 'process'
+
+import {install} from '../../pkg'
 
 const DEFAULT_PACKAGES_DIR = `${homedir()}/.dotfiles/pkg`
-const PACKAGE_SCRIPTS_DIR = cwd() + '/src/pkg'
 
 export default class Install extends Command {
   static description = 'Install a package.'
 
   static examples = [
-    '$ wk install docker',
+    '$ wk pkg:install docker',
   ]
 
   static flags = {
@@ -31,10 +30,9 @@ export default class Install extends Command {
     const packagesDir = flags.packagesDir || DEFAULT_PACKAGES_DIR
 
     try {
-      const output = execSync(`./install.sh ${packagesDir} ${args.package}`, {cwd: PACKAGE_SCRIPTS_DIR})
-      this.log(output.toString())
+      this.log(install(args.package, packagesDir))
     } catch (error) {
-      this.error(error.output.toString())
+      this.error(error)
     }
   }
 }
