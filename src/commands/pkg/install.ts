@@ -32,6 +32,7 @@ export default class Install extends Command {
     try {
       this.log(install(args.package, packagesDir))
     } catch (error) {
+      this.log(`When installing '${args.package}':`)
       this.error(error)
     }
   }
